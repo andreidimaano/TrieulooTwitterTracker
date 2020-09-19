@@ -19,7 +19,7 @@ async function getMatch(accountId,amountOfGames) {
     });
     let match = response.data.matches[0];
     let gameId = match.gameId;
-    // console.log(gameId);
+    console.log(gameId);
     let champId = match.champion;
     // console.log(response.data);
     return await getMatchData(gameId, champId);
