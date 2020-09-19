@@ -38,9 +38,9 @@ async function getMatchData(gameId, champId) {
     let visionWardsBoughtInGame = participant.stats.visionWardsBoughtInGame;
     let totalDamageDealtToChampions = participant.stats.totalDamageDealtToChampions;
     let killingSprees = participant.stats.killingSprees;
+    let kdaSpread = `${participant.stats.kills}/${participant.stats.deaths}/${participant.stats.assists}`;
     let kda = (participant.stats.kills + participant.stats.assists) / participant.stats.deaths;
-    let deaths = participant.stats.deaths;
-    let cs = (participant.stats.totalMinionsKilled + participant.stats.neutralMinionsKilled)/(body.gameDuration/60.0);
+    let cs = ((participant.stats.totalMinionsKilled + participant.stats.neutralMinionsKilled)/(body.gameDuration/60.0)).toFixed(2);
 
     let gameData = {
         gameId: gameId,
@@ -49,8 +49,8 @@ async function getMatchData(gameId, champId) {
         visionWardsBoughtInGame: visionWardsBoughtInGame,
         totalDamageDealtToChampions: totalDamageDealtToChampions,
         killingSprees: killingSprees,
+        kdaSpread: kdaSpread,
         kda: kda,
-        deaths: deaths,
         cs: cs
     }
 
