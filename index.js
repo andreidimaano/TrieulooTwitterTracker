@@ -4,7 +4,7 @@ let { tweetMessage } = require("./twitterbot.js");
 async function main() {
     tweetMessage();
     // setInterval(tweetMessage, 3600000);
-    setInterval(main, 10000);
+    setInterval(main, 500000);
 }
 
 main()    
