@@ -1,4 +1,4 @@
-const axios = require("./axios");
+let axios = require("./axios");
 
 module.exports.getAccount = getAccount;
 
@@ -34,11 +34,7 @@ async function getMatchData(gameId, summonerId, champId) {
    
     //get stats 
     let isVictor = participant.stats.win;
-    let longestTimeSpentliving = participant.stats.longestTimeSpentLiving;
-    let longestTimeSpentLivingMin = `${Math.floor(longestTimeSpentliving/60)}m ${longestTimeSpentliving - (60 * Math.floor(longestTimeSpentliving/60))}s`; 
-    let visionWardsBoughtInGame = participant.stats.visionWardsBoughtInGame;
     let totalDamageDealtToChampions = participant.stats.totalDamageDealtToChampions;
-    let killingSprees = participant.stats.killingSprees;
     let kdaSpread = `${participant.stats.kills}/${participant.stats.deaths}/${participant.stats.assists}`;
     let kda = (participant.stats.kills + participant.stats.assists) / participant.stats.deaths;
     let cs = ((participant.stats.totalMinionsKilled + participant.stats.neutralMinionsKilled)/(body.gameDuration/60.0)).toFixed(2);
@@ -55,10 +51,7 @@ async function getMatchData(gameId, summonerId, champId) {
         win: isVictor,
         currentRank: (tier === "DIAMOND") ? `${tier} ${rank} ${lp} LP` : `${tier} ${lp} LP`,
         WL: winloss,
-        longestTimeSpentLiving: longestTimeSpentLivingMin,
-        visionWardsBoughtInGame: visionWardsBoughtInGame,
-        totalDamageDealtToChampions: totalDamageDealtToChampions,
-        killingSprees: killingSprees,
+        dmgDealt: totalDamageDealtToChampions,
         kda:`${kdaSpread} (${kda})`,
         csPerMin: cs
     }

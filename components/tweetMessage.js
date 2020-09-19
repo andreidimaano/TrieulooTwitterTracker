@@ -1,11 +1,10 @@
 let winMessages = [
     "Okay, congratulations but when are you gonna be challenger?",
-    "WOW, @BTS_twt COULD NEVER",
+    "WOW! @BTS_twt COULD NEVER",
     "WOW! @lol_tyler1 TAKE SOME NOTES",
     "WOW! @Maxwaldo_ CONSIDER HIM A NEW CLIENT?! @Trieuloo",
     "WOW! @LSXYZ9 CONSIDER HIM A NEW CLIENT?! @Trieuloo",
     "POG POG POG POG still trash POG POG POG POG",
-    "Yeah, you’re definitely getting carried in these games",
 ];
 
 let loseMessages = [

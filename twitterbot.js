@@ -1,14 +1,16 @@
-var Twit = require('twit');
+let Twit = require('twit');
 require('dotenv').config();
-const Datastore = require('nedb');
+let Datastore = require('nedb');
 
-const { getMessage } = require("./messages.js");
+let { getMessage } = require("./messages.js");
 
-const database = new Datastore('matches.db');
+let database = new Datastore('matches.db');
 database.loadDatabase();
 
 async function messages() {
-    let {matchId, message} = await getMessage();
+    let response = await getMessage();
+    let matchId = response.gameId;
+    let message = response.message;
 
     database.find({matchId}, function(err, docs) {
         if(docs === undefined || docs.length=== 0) {
@@ -35,12 +37,10 @@ function tweetIt(message) {
         status: message
     }
 
-    T.post('statuses/update', tweet, tweeted);
-
-    function tweeted(err, data, response) {
+    T.post('statuses/update', tweet, (err, data, response) => {
         let currentDate = new Date();
         let timestamp = currentDate.getDate() + "-" + (currentDate.getMonth()+1) + "-" + currentDate.getFullYear() + 
-                        " " + currentDate.getHours() + ":" + currentDate.getMinutes();
+        " " + currentDate.getHours() + ":" + currentDate.getMinutes();
         console.log("Tweeted at " + timestamp);
-    }
+    })
 }

@@ -1,4 +1,4 @@
-const { getAccount } = require("./api-files/riot.js");
+let { getAccount } = require("./api-files/riot.js");
 
 let summonerName = 'Trieuloo'
 async function main() {
