@@ -1,10 +1,10 @@
 const { getAccount } = require("./api-files/riot.js");
 let summonerName = 'Trieuloo'
 
-async function main() {
+module.exports.getMessages = getMessages;
+getMessages();
+async function getMessages() {
     let gameData = await getAccount(summonerName);
-    
-    console.log(gameData);
 
     var WArr = ['Okay, congratulations but when are you gonna be challenger?',
      'Team diff gg','He’s probably carried', 'Trieuly some free elo', 'Dub for the boys']
@@ -20,13 +20,10 @@ async function main() {
         //console.log(resultArr) 
 }
     const gameStat = Object.entries(gameData)
-    //console.log([gameData.gameId, resultArr[Math.floor(Math.random()*resultArr.length)], gameStat[Math.floor(Math.random()*6)+2]])
-    return [gameData.gameId, resultArr[Math.floor(Math.random()*resultArr.length)], 
-    gameStat[Math.floor(Math.random()*6)+2]]
+    //console.log([gameData.gameId, resultArr[Math.floor(Math.random()*resultArr.length)], gameStat[Math.floor(Math.random()*6)+2]]);
+    let one = gameData.gameId;
+    let two = resultArr[Math.floor(Math.random()*resultArr.length)];
+    let three = gameStat[Math.floor(Math.random()*6)+2];
+    var game = [one, two, three];
+    return game;
 }
-main()
-    .catch(e => {
-        console.error(e.stack);
-        process.exit(1);
-    
-    });
