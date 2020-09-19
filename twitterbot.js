@@ -8,10 +8,8 @@ const database = new Datastore('matches.db');
 database.loadDatabase();
 
 async function messages() {
-    let messages = await getMessage();
-    let matchId, message;
-    matchId = messages.gameId;
-    message = messages.message;
+    let {matchId, message} = await getMessage();
+
     database.find({matchId}, function(err, docs) {
         if(docs === undefined || docs.length=== 0) {
             database.insert({matchId});
@@ -26,22 +24,22 @@ async function messages() {
  messages();
 
 function tweetIt(message) {
-    var T = new Twit({
-              consumer_key:         process.env.TWIT_KEY
-            , consumer_secret:      process.env.TWIT_SECRET_KEY
-            , access_token:         process.env.TWIT_ACCESS_KEY
-            , access_token_secret:  process.env.TWIT_ACCESS_SECRET_KEY
+    let T = new Twit({ 
+        consumer_key: process.env.TWIT_KEY,
+        consumer_secret: process.env.TWIT_SECRET_KEY,
+        access_token: process.env.TWIT_ACCESS_KEY,
+        access_token_secret: process.env.TWIT_ACCESS_SECRET_KEY
     });
 
-    var tweet = {
+    let tweet = {
         status: message
     }
 
     T.post('statuses/update', tweet, tweeted);
 
     function tweeted(err, data, response) {
-        var currentDate = new Date();
-        var timestamp = currentDate.getDate() + "-" + (currentDate.getMonth()+1) + "-" + currentDate.getFullYear() + 
+        let currentDate = new Date();
+        let timestamp = currentDate.getDate() + "-" + (currentDate.getMonth()+1) + "-" + currentDate.getFullYear() + 
                         " " + currentDate.getHours() + ":" + currentDate.getMinutes();
         console.log("Tweeted at " + timestamp);
     }

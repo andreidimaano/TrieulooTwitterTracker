@@ -51,10 +51,10 @@ async function getMatchData(gameId, summonerId, champId) {
     
 
     let gameData = {
-        currentRank: (tier === "DIAMOND") ? `${tier} ${rank} ${lp} LP` : `${tier} ${lp} LP`,
-        WL: winloss,
         gameId: gameId,
         win: isVictor,
+        currentRank: (tier === "DIAMOND") ? `${tier} ${rank} ${lp} LP` : `${tier} ${lp} LP`,
+        WL: winloss,
         longestTimeSpentLiving: longestTimeSpentLivingMin,
         visionWardsBoughtInGame: visionWardsBoughtInGame,
         totalDamageDealtToChampions: totalDamageDealtToChampions,

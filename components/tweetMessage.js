@@ -11,12 +11,11 @@ let winMessages = [
 let loseMessages = [
     "Poopy Woopy, you just lost some LP",
     "https://gph.is/2AUXdSp",
-    "Your gameplay is absolutely horrendous, try following this tutorial: https://www.youtube.com/watch?v=FWJufSUDW28",
-    "Your gameplay needs some work, try following this tutorial: https://www.youtube.com/watch?v=gpXKwOQbqSY",
+    "Your gameplay needs some work! Try following this tutorial: https://www.youtube.com/watch?v=FWJufSUDW28",
+    "Your gameplay needs some work! Try following this tutorial: https://www.youtube.com/watch?v=gpXKwOQbqSY",
     "You: http://www.youtube.com/watch?v=QpumKceAyog&t=0m23s",
     "Sadness: http://www.youtube.com/watch?v=v3UXBJtZE8I&t=0m28s",
     "Here’s a highlight clip of your game! https://www.youtube.com/watch?v=mcHIDzGwFlQ",
-    "If you’re subscribed to this man on twitch, consider refunding =)",
 ];
 
 module.exports = {
