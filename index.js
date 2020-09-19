@@ -3,7 +3,8 @@ let { tweetMessage } = require("./twitterbot.js");
 
 async function main() {
     tweetMessage();
-    setInterval(tweetMessage, 3600000);
+    // setInterval(tweetMessage, 3600000);
+    setInterval(tweetMessage, 30);
 }
 
 main()    
