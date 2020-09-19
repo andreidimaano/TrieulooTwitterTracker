@@ -2,29 +2,30 @@ var Twit = require('twit');
 require('dotenv').config();
 const Datastore = require('nedb');
 
-const { getMessages } = require("./messages.js");
+const { getMessage } = require("./messages.js");
 
 const database = new Datastore('matches.db');
 database.loadDatabase();
 
 async function messages() {
-    let messages = await getMessages();
-    let matchId, funnyText, funnyStat;
-    [matchId, funnyText, funnyStat] = [messages[0], messages[1], messages[2]];
+    let messages = await getMessage();
+    let matchId, message;
+    matchId = messages.gameId;
+    message = messages.message;
     database.find({matchId}, function(err, docs) {
         if(docs === undefined || docs.length=== 0) {
             database.insert({matchId});
-            tweetIt(matchId, funnyText, funnyStat);
+            tweetIt(message);
         }
         else {
             console.log("No new tweet");
         }
     });
-}
+ }
 
-messages();
+ messages();
 
-function tweetIt(matchId, funnyText, funnyStat) {
+function tweetIt(message) {
     var T = new Twit({
               consumer_key:         process.env.TWIT_KEY
             , consumer_secret:      process.env.TWIT_SECRET_KEY
@@ -33,12 +34,7 @@ function tweetIt(matchId, funnyText, funnyStat) {
     });
 
     var tweet = {
-        status: funnyText + "\n" + "\n" + funnyStat[2][0] + ": " + funnyStat[2][1] 
-                + "\n" +  funnyStat[3][0] + ": " + funnyStat[3][1] 
-                + "\n" + funnyStat[4][0] + ": " + funnyStat[4][1] 
-                + "\n"+ funnyStat[5][0] + ": " + funnyStat[5][1] 
-                + "\n" + funnyStat[6][0] + ": " + funnyStat[6][1] 
-                + "\n" + funnyStat[7][0] + ": " + funnyStat[7][1]
+        status: message
     }
 
     T.post('statuses/update', tweet, tweeted);

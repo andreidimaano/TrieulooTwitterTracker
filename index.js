@@ -2,7 +2,7 @@ const { getAccount } = require("./api-files/riot.js");
 let summonerName = 'Trieuloo'
 async function main() {
     let gameData = await getAccount(summonerName);
-    console.log(gameData);
+    // console.log(gameData);
 }
 
 main()
