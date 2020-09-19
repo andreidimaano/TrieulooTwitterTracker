@@ -23,6 +23,11 @@ async function getMessages() {
     //console.log([gameData.gameId, resultArr[Math.floor(Math.random()*resultArr.length)], gameStat[Math.floor(Math.random()*6)+2]]);
     let one = gameData.gameId;
     let two = resultArr[Math.floor(Math.random()*resultArr.length)];
+    for (i in gameStat){
+        var camel = gameStat[i][0].replace(/([A-Z])+/g, " $1");
+        var normal = camel.charAt(0).toUpperCase() + camel.slice(1);
+        gameStat[i][0] = normal
+    }
     let three = gameStat;
     var game = [one, two, three];
     return game;

@@ -45,7 +45,7 @@ async function getMatchData(gameId, champId) {
     let gameData = {
         gameId: gameId,
         win: isVictor,
-        longestTimeSpentliving: longestTimeSpentliving,
+        longestTimeSpentLiving: longestTimeSpentliving,
         visionWardsBoughtInGame: visionWardsBoughtInGame,
         totalDamageDealtToChampions: totalDamageDealtToChampions,
         killingSprees: killingSprees,
