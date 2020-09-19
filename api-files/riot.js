@@ -2,20 +2,17 @@ const axios = require("./axios");
 
 getAccount("Trieuloo");
 
-var gameId;
-
 function getAccount(summonerName){
-    
+    let accountId;
+
     axios.get(`/summoner/v4/summoners/by-name/${summonerName}`)
     .then((response) => {
-        const accountId = response.data.accountId;
-        // console.log(response.data.accountId);
+        accountId = response.data.accountId;
         getMatch(accountId, 1);
     })
     .catch((error) => {
         console.log(error);
     })
-
 }
 
 function getMatch(accountId,amountOfGames) {
@@ -27,7 +24,8 @@ function getMatch(accountId,amountOfGames) {
     })
     .then((response) => {
         const match = response.data.matches[0];
-        gameId = match.gameId;
+        const gameId = match.gameId;
+        // console.log(gameId);
         const champId = match.champion;
         // console.log(response.data);
         getMatchData(gameId, champId);
@@ -43,13 +41,35 @@ function getMatchData(gameId, champId) {
     .then((response) => {
         const body = response.data;
 
-        const participant = body.participants.filter(participant => participant.championId === champId);
+        const participant = body.participants.filter(participant => participant.championId === champId)[0];
+        // console.log(champId);
 
-        if(participant[0].stats.win == true){
-            console.log("Okay good job, you won but when will you hit challenger lol.");
-        } else {
-            console.log("XDDDDDDDDD. What else could I have expected.")
+        const isVictor = participant.stats.win;
+        const longestTimeSpentliving = participant.stats.longestTimeSpentLiving;
+        const visionWardsBoughtInGame = participant.stats.visionWardsBoughtInGame;
+        const totalDamageDealtToChampions = participant.stats.totalDamageDealtToChampions;
+        const killingSprees = participant.stats.killingSprees;
+        const kda = (participant.stats.kills + participant.stats.assists) / participant.stats.deaths;
+        const deaths = participant.stats.deaths;
+        const cs = (participant.stats.totalMinionsKilled + participant.stats.neutralMinionsKilled)/(body.gameDuration/60.0);
+
+        const gameData = {
+            gameId: gameId,
+            win: isVictor,
+            longestTimeSpentliving: longestTimeSpentliving,
+            visionWardsBoughtInGame: visionWardsBoughtInGame,
+            totalDamageDealtToChampions: totalDamageDealtToChampions,
+            killingSprees: killingSprees,
+            kda: kda,
+            deaths: deaths,
+            cs: cs
         }
+
+        console.log(gameData);
+
+
+        //i want to export gameData
+        // return gameData;
     })
     .catch((error) => {
         console.log(error);
