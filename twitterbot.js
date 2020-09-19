@@ -1,13 +1,14 @@
 let Twit = require('twit');
 require('dotenv').config();
 let Datastore = require('nedb');
-
 let { getMessage } = require("./messages.js");
-
 let database = new Datastore('matches.db');
+
 database.loadDatabase();
 
-async function messages() {
+module.exports.tweetMessage = getTweet;
+
+async function getTweet() {
     let response = await getMessage();
     let matchId = response.gameId;
     let message = response.message;
@@ -23,8 +24,6 @@ async function messages() {
     });
  }
 
- messages();
-
 function tweetIt(message) {
     let T = new Twit({ 
         consumer_key: process.env.TWIT_KEY,
@@ -33,9 +32,7 @@ function tweetIt(message) {
         access_token_secret: process.env.TWIT_ACCESS_SECRET_KEY
     });
 
-    let tweet = {
-        status: message
-    }
+    let tweet = {status: message};
 
     T.post('statuses/update', tweet, (err, data, response) => {
         let currentDate = new Date();

@@ -1,12 +1,11 @@
-let { getAccount } = require("./api-files/riot.js");
+// let { getAccount } = require("./api-files/riot.js");
+let { tweetMessage } = require("./twitterbot.js");
 
-let summonerName = 'Trieuloo'
 async function main() {
-    let gameData = await getAccount(summonerName);
-    console.log(gameData);
+    tweetMessage();
 }
 
-main()
+main()    
     .catch(e => {
         console.error(e.stack);
         process.exit(1);

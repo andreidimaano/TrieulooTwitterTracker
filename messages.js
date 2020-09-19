@@ -17,7 +17,7 @@ async function getMessage() {
         message += "\n\nSorry you lost. Make sure you don't tilt to D1 again =) \n\n";
     }
 
-    message += "Here are your stats: \n";
+    message += "@Trieuloo stats: \n";
     let gameStat = Object.entries(gameData)
     let gameId = gameData.gameId;
     for (i in gameStat){
