@@ -23,7 +23,7 @@ async function getMessages() {
     //console.log([gameData.gameId, resultArr[Math.floor(Math.random()*resultArr.length)], gameStat[Math.floor(Math.random()*6)+2]]);
     let one = gameData.gameId;
     let two = resultArr[Math.floor(Math.random()*resultArr.length)];
-    let three = gameStat[Math.floor(Math.random()*6)+2];
+    let three = gameStat;
     var game = [one, two, three];
     return game;
 }

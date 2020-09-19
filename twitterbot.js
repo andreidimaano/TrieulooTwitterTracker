@@ -8,7 +8,6 @@ async function messages() {
     let matchId, funnyText, funnyStat;
     [matchId, funnyText, funnyStat] = [messages[0], messages[1], messages[2]];
     tweetIt(matchId, funnyText, funnyStat);
-    // console.log(funnyText + "\n" + funnyStat[0] + ": " + funnyStat[1]);
 }
 
     messages();
@@ -23,7 +22,8 @@ function tweetIt(matchId, funnyText, funnyStat) {
     });
 
     var tweet = {
-        status: funnyText + "\n" + funnyStat[0] + ": " + funnyStat[1]
+        status: funnyText + "\n" + funnyStat[2][0] + ": " + funnyStat[2][1] + "\n" +  funnyStat[3][0] + ": " + funnyStat[3][1] + "\n" + funnyStat[4][0] + ": " + funnyStat[4][1] + "\n"
+                + funnyStat[5][0] + ": " + funnyStat[5][1] + "\n" + funnyStat[6][0] + ": " + funnyStat[6][1] + "\n" + funnyStat[7][0] + ": " + funnyStat[7][1]
     }
 
     T.post('statuses/update', tweet, tweeted);
