@@ -1,22 +1,32 @@
-//import {gameID, summonerName} from './index.js';
-var WArr = []
-var LArr = []
-var sumName = summonerName
-var result = true
-if (result) {
-    var currentStr = WArr[Math.floor(Math.random() * WArr.length)];
-    console.log(currentStr)
-}
-else {
-    var currentStr = LArr[Math.floor(Math.random() * LArr.length)];
-    console.log(currentStr)
-}
-console.log(`${currentStr}.format(x, summonerName)`)
+const { getAccount } = require("./api-files/riot.js");
+let summonerName = 'Trieuloo'
 
-// var arr = ['~ bloop', '~ doop', '~ floop']
-// var name = 'TrieuLoo'
-// var resultArr = arr.map(function(x){return x.replace(/x/g, name);});
-// console.log(resultArr)
-// for (i in resultArr) {
-//   console.log(resultArr[i])
-// }
+async function main() {
+    let gameData = await getAccount(summonerName);
+    
+    console.log(gameData);
+
+    var WArr = ['Okay, congratulations but when are you gonna be challenger?',
+     'Team diff gg','He’s probably carried', 'Trieuly some free elo', 'Dub for the boys']
+    var LArr = ['Poopy Woopy, you just lost some LP', 'XDDDDDDDDD ',
+     'If you’re subscribed to @~ on twitch, consider refunding =)',
+     'Refund that account', 'Boosted or wat?', 'Sadness']
+    if (gameData.win) {
+        var resultArr = WArr.map(function(x){return x.replace(/~/g, summonerName);});
+        //console.log(resultArr)
+    }
+    else{
+        var resultArr = LArr.map(function(x){return x.replace(/~/g, summonerName);});
+        //console.log(resultArr) 
+}
+    const gameStat = Object.entries(gameData)
+    //console.log([gameData.gameId, resultArr[Math.floor(Math.random()*resultArr.length)], gameStat[Math.floor(Math.random()*6)+2]])
+    return [gameData.gameId, resultArr[Math.floor(Math.random()*resultArr.length)], 
+    gameStat[Math.floor(Math.random()*6)+2]]
+}
+main()
+    .catch(e => {
+        console.error(e.stack);
+        process.exit(1);
+    
+    });

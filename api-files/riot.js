@@ -32,7 +32,7 @@ async function getMatchData(gameId, champId) {
 
     let participant = body.participants.filter(participant => participant.championId === champId)[0];
     // console.log(champId);
-
+    
     let isVictor = participant.stats.win;
     let longestTimeSpentliving = participant.stats.longestTimeSpentLiving;
     let visionWardsBoughtInGame = participant.stats.visionWardsBoughtInGame;
