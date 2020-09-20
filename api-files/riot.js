@@ -40,11 +40,16 @@ async function getMatchData(gameId, summonerId, champId) {
     let cs = ((participant.stats.totalMinionsKilled + participant.stats.neutralMinionsKilled)/(body.gameDuration/60.0)).toFixed(2);
 
     let currentRank = await axios.get(`/league/v4/entries/by-summoner/${summonerId}`);
-    let tier = currentRank.data[0].tier;
-    let rank = currentRank.data[0].rank;
-    let lp = currentRank.data[0].leaguePoints;
-    let winloss = `${currentRank.data[0].wins}W ${currentRank.data[0].losses}L`;
+    let tier; let rank; let lp; let winloss;
     
+    for(i in currentRank.data){
+        if(currentRank.data[i].queueType == "RANKED_SOLO_5x5"){
+            tier = currentRank.data[i].tier;
+            rank = currentRank.data[i].rank;
+            lp = currentRank.data[i].leaguePoints;
+            winloss = `${currentRank.data[i].wins}W ${currentRank.data[i].losses}L`;
+        }
+    }
 
     let gameData = {
         gameId: gameId,
