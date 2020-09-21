@@ -3,9 +3,6 @@ Twitter Bot to track Trieuloo's League of Legends games
 
 How it works: 
 1. Search for Trieuloo's Game Information in api-files/Riot.js
-    -Get Account ID & SummonerId
-    -Get recent match
-    -Get match data (includes current rank)
 
 2. Pass Information to messages.js and create tweet
 
