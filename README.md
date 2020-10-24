@@ -1,5 +1,6 @@
 # TrieulooTwitterTracker
 Twitter Bot to track Trieuloo's League of Legends games
+https://twitter.com/TrieulooTracker
 
 How it works: 
 1. Search for Trieuloo's Game Information in api-files/Riot.js
