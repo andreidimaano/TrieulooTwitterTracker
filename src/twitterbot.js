@@ -1,7 +1,7 @@
 let Twit = require('twit');
 require('dotenv').config();
 let Datastore = require('nedb');
-let { getMessage } = require("./messages.js");
+let { getMessage } = require("../messages.js");
 let database = new Datastore('matches.db');
 
 database.loadDatabase();

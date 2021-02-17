@@ -1,5 +1,6 @@
 // let { getAccount } = require("./api-files/riot.js");
-let { tweetMessage } = require("./twitterbot.js");
+// let { tweetMessage } = require("../twitterbot.js");
+import { tweetMessage } from './twitterbot';
 
 async function main() {
     tweetMessage();

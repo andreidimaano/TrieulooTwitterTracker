@@ -4,6 +4,7 @@
   "description": "twitter bot for tracking trieuloo's league of legends ranked games",
   "main": "index.js",
   "scripts": {
+    "start": "node src/index.js",
     "test": "node run index.js"
   },
   "repository": {
