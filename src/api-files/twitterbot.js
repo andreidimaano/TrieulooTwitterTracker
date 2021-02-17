@@ -1,30 +1,29 @@
-let Twit = require('twit');
 require('dotenv').config();
-let Datastore = require('nedb');
-let { getMessage } = require("../messages.js");
+import Twit from 'twit';
+import Datastore from 'nedb';
+import { getMessage } from './messages'
 let database = new Datastore('matches.db');
 
-database.loadDatabase();
+// database.loadDatabase();
 
-module.exports.tweetMessage = getTweet;
-
-async function getTweet() {
+export let getTweet = async () => {
     let response = await getMessage();
     let matchId = response.gameId;
     let message = response.message;
+    tweetIt(message);
 
-    database.find({matchId}, function(err, docs) {
-        if(docs === undefined || docs.length=== 0) {
-            database.insert({matchId});
-            tweetIt(message);
-        }
-        else {
-            console.log("No new tweet");
-        }
-    });
+    // database.find({matchId}, function(err, docs) {
+    //     if(docs === undefined || docs.length=== 0) {
+    //         database.insert({matchId});
+    //         tweetIt(message);
+    //     }
+    //     else {
+    //         console.log("No new tweet");
+    //     }
+    // });
  }
 
-function tweetIt(message) {
+export let tweetIt = (message) => {
     let T = new Twit({ 
         consumer_key: process.env.TWIT_KEY,
         consumer_secret: process.env.TWIT_SECRET_KEY,

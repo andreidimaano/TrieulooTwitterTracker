@@ -1,10 +1,8 @@
-let { getAccount } = require("./api-files/riot.js");
-let { winMessages, loseMessages} = require("./components/tweetMessage.js");
-let summonerName = 'Trieuloo'
+import { getAccount } from './riot'
+import { winMessages, loseMessages } from '../components/tweetMessage'
+import { summonerName } from '../constants'
 
-module.exports.getMessage = getMessage;
-
-async function getMessage() {
+export let getMessage = async () => {
     let gameData = await getAccount(summonerName);
     let message;
 
